@@ -12,6 +12,7 @@ package Ada_Tetris.Board is
       array (Row_Index, Col_Index) of Cell;     
 
    procedure Place (Row : Row_Index; Col : Col_Index);
+   procedure Clear;
    procedure Draw;
 
 end Ada_Tetris.Board;

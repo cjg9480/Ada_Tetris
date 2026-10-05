@@ -8,6 +8,11 @@ package body Ada_Tetris.Board is
       Board (Row, Col) := Filled;
    end Place;
 
+   procedure Clear is
+   begin
+      Board := (others => (others => Empty));
+   end Clear;
+
    procedure Draw is
    begin
     
