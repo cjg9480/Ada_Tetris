@@ -14,7 +14,8 @@ package body Ada_Tetris.Board is
             To_Row   : Row_Index;
             To_Col   : Col_Index) return Boolean is
    begin
-      return Board (To_Row, To_Col) = Empty;
+      return Board (From_Row, From_Col) = Filled
+         and Board (To_Row, To_Col) = Empty;
    end Can_Move;
 
    procedure Move
