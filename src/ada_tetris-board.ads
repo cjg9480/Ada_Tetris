@@ -24,6 +24,10 @@ package Ada_Tetris.Board is
        To_Row   : Row_Index;
        To_Col   : Col_Index) return Boolean;
 
+   function Can_Move
+      (From : Position;
+       To   : Position) return Boolean;
+
    procedure Move
       (From_Row : Row_Index;
        From_Col : Col_Index;

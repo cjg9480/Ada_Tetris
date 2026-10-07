@@ -18,6 +18,15 @@ package body Ada_Tetris.Board is
          and Board (To_Row, To_Col) = Empty;
    end Can_Move;
 
+      function Can_Move
+      (From : Position;
+       To   : Position) return Boolean is
+   begin
+      return Can_Move
+         (From.Row, From.Col,
+          To.Row, To.Col);
+   end Can_Move;
+
    procedure Move
       (From_Row : Row_Index;
       From_Col : Col_Index;

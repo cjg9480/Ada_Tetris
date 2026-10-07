@@ -10,14 +10,16 @@ procedure Ada_Tetris_Main is
 begin
 
    Ada.Text_IO.Put_Line
-      ("Position Row = " & Ada_Tetris.Board.Row_Index'Image (P.Row));
-
-   Ada.Text_IO.Put_Line
       ("Position Col = " & Ada_Tetris.Board.Col_Index'Image (P.Col));
 
    Ada_Tetris.Board.Place (19, 5);
 
-   Ada_Tetris.Board.Place (20, 5);
+   Ada.Text_IO.Put_Line
+      ("Can_Move = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move
+            (P,
+             (Row => 20, Col => 5))));
 
    Ada_Tetris.Board.Move (19, 5, 20, 5);
 
