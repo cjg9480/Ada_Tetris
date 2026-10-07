@@ -13,6 +13,13 @@ package Ada_Tetris.Board is
       Col : Col_Index;
    end record;
 
+   type Block is record
+      P1 : Position;
+      P2 : Position;
+      P3 : Position;
+      P4 : Position;
+   end record;
+
    type Board_State is
       array (Row_Index, Col_Index) of Cell;
 
