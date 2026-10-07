@@ -24,6 +24,7 @@ package Ada_Tetris.Board is
       array (Row_Index, Col_Index) of Cell;
 
    procedure Place (Row : Row_Index; Col : Col_Index);
+   procedure Place (B : Block);
 
    function Can_Move
       (From_Row : Row_Index;

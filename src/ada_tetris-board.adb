@@ -3,9 +3,18 @@ with Ada.Text_IO;
 package body Ada_Tetris.Board is
 
    Board : Board_State := (others => (others => Empty));
+
    procedure Place (Row : Row_Index; Col : Col_Index) is
    begin
       Board (Row, Col) := Filled;
+   end Place;
+
+   procedure Place (B : Block) is
+   begin
+      Place (B.P1.Row, B.P1.Col);
+      Place (B.P2.Row, B.P2.Col);
+      Place (B.P3.Row, B.P3.Col);
+      Place (B.P4.Row, B.P4.Col);
    end Place;
 
       function Can_Move
@@ -19,8 +28,8 @@ package body Ada_Tetris.Board is
    end Can_Move;
 
       function Can_Move
-      (From : Position;
-       To   : Position) return Boolean is
+         (From : Position;
+         To   : Position) return Boolean is
    begin
       return Can_Move
          (From.Row, From.Col,
