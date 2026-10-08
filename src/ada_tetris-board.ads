@@ -40,11 +40,21 @@ package Ada_Tetris.Board is
        Delta_Row : Integer;
        Delta_Col : Integer) return Boolean;
 
+   function Can_Move
+      (B         : Block;
+       Delta_Row : Integer;
+       Delta_Col : Integer) return Boolean;
+
    procedure Move
       (From_Row : Row_Index;
        From_Col : Col_Index;
        To_Row   : Row_Index;
        To_Col   : Col_Index);
+
+   procedure Move
+      (B         : in out Block;
+       Delta_Row : Integer;
+       Delta_Col : Integer);
 
    procedure Clear;
    procedure Draw;

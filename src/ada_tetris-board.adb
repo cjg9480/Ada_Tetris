@@ -47,17 +47,49 @@ package body Ada_Tetris.Board is
          and New_Col in 1 .. Width;
    end Can_Move;
 
+   function Can_Move
+      (B         : Block;
+       Delta_Row : Integer;
+       Delta_Col : Integer) return Boolean is
+   begin
+      return Can_Move (B.P1, Delta_Row, Delta_Col)
+         and Can_Move (B.P2, Delta_Row, Delta_Col)
+         and Can_Move (B.P3, Delta_Row, Delta_Col)
+         and Can_Move (B.P4, Delta_Row, Delta_Col);
+   end Can_Move;
+
    procedure Move
       (From_Row : Row_Index;
-      From_Col : Col_Index;
-      To_Row   : Row_Index;
-      To_Col   : Col_Index) is
+       From_Col : Col_Index;
+       To_Row   : Row_Index;
+       To_Col   : Col_Index) is
    begin
       if Can_Move (From_Row, From_Col, To_Row, To_Col) then
          Board (To_Row, To_Col) := Board (From_Row, From_Col);
          Board (From_Row, From_Col) := Empty;
       end if;
    end Move;
+
+   procedure Move
+      (B         : in out Block;
+       Delta_Row : Integer;
+       Delta_Col : Integer) is
+   begin
+      if Can_Move (B, Delta_Row, Delta_Col) then
+         B.P1.Row := Row_Index (Integer (B.P1.Row) + Delta_Row);
+         B.P1.Col := Col_Index (Integer (B.P1.Col) + Delta_Col);
+
+         B.P2.Row := Row_Index (Integer (B.P2.Row) + Delta_Row);
+         B.P2.Col := Col_Index (Integer (B.P2.Col) + Delta_Col);
+
+         B.P3.Row := Row_Index (Integer (B.P3.Row) + Delta_Row);
+         B.P3.Col := Col_Index (Integer (B.P3.Col) + Delta_Col);
+
+         B.P4.Row := Row_Index (Integer (B.P4.Row) + Delta_Row);
+         B.P4.Col := Col_Index (Integer (B.P4.Col) + Delta_Col);
+      end if;
+   end Move;
+
 
    procedure Clear is
    begin

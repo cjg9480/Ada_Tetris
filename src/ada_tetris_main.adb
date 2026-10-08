@@ -13,6 +13,12 @@ procedure Ada_Tetris_Main is
        P3 => (Row => 19, Col => 6),
        P4 => (Row => 19, Col => 7));
 
+   B_Bottom : Ada_Tetris.Board.Block :=
+      (P1 => (Row => 20, Col => 4),
+       P2 => (Row => 20, Col => 5),
+       P3 => (Row => 20, Col => 6),
+       P4 => (Row => 20, Col => 7));
+
 begin
 
    Ada.Text_IO.Put_Line
@@ -40,19 +46,29 @@ begin
       ("Down at bottom = " &
        Boolean'Image
          (Ada_Tetris.Board.Can_Move
-            ((Row => 20, Col => 5), 1, 0)));
+            (Ada_Tetris.Board.Position'(Row => 20, Col => 5), 1, 0)));
 
    Ada.Text_IO.Put_Line
       ("Up at top = " &
        Boolean'Image
          (Ada_Tetris.Board.Can_Move
-            ((Row => 1, Col => 5), -1, 0)));
+             (Ada_Tetris.Board.Position'(Row => 1, Col => 5), -1, 0)));
 
    Ada.Text_IO.Put_Line
       ("Right = " &
        Boolean'Image
          (Ada_Tetris.Board.Can_Move
-            ((Row => 10, Col => 5), 0, 1)));
+            (Ada_Tetris.Board.Position'(Row => 10, Col => 5), 0, 1)));
+
+   Ada.Text_IO.Put_Line
+      ("Block Down = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move (B, 1, 0)));
+
+   Ada.Text_IO.Put_Line
+      ("Block Down at bottom = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move (B_Bottom, 1, 0)));
 
    Ada.Text_IO.Put_Line
       ("Block P1 Row = " &
@@ -86,7 +102,25 @@ begin
       ("Block P4 Col = " &
        Ada_Tetris.Board.Col_Index'Image (B.P4.Col));
 
-   Ada_Tetris.Board.Move (19, 5, 20, 5);
+   Ada.Text_IO.Put_Line ("--- Move Block Down ---");
+
+   Ada_Tetris.Board.Move (B, 1, 0);
+
+   Ada.Text_IO.Put_Line
+      ("Block P1 Row = " &
+       Ada_Tetris.Board.Row_Index'Image (B.P1.Row));
+
+   Ada.Text_IO.Put_Line
+      ("Block P2 Row = " &
+       Ada_Tetris.Board.Row_Index'Image (B.P2.Row));
+
+   Ada.Text_IO.Put_Line
+      ("Block P3 Row = " &
+       Ada_Tetris.Board.Row_Index'Image (B.P3.Row));
+
+   Ada.Text_IO.Put_Line
+      ("Block P4 Row = " &
+       Ada_Tetris.Board.Row_Index'Image (B.P4.Row));
 
    Ada_Tetris.Board.Draw;
 
