@@ -36,6 +36,17 @@ package body Ada_Tetris.Board is
           To.Row, To.Col);
    end Can_Move;
 
+   function Can_Move
+      (P         : Position;
+         Delta_Row : Integer;
+         Delta_Col : Integer) return Boolean is
+         New_Row : Integer := Integer (P.Row) + Delta_Row;
+         New_Col : Integer := Integer (P.Col) + Delta_Col;
+   begin
+      return New_Row in 1 .. Height
+         and New_Col in 1 .. Width;
+   end Can_Move;
+
    procedure Move
       (From_Row : Row_Index;
       From_Col : Col_Index;

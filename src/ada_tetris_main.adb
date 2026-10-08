@@ -32,6 +32,29 @@ begin
              (Row => 20, Col => 5))));
 
    Ada.Text_IO.Put_Line
+      ("Down = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move (P, 1, 0)));
+
+   Ada.Text_IO.Put_Line
+      ("Down at bottom = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move
+            ((Row => 20, Col => 5), 1, 0)));
+
+   Ada.Text_IO.Put_Line
+      ("Up at top = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move
+            ((Row => 1, Col => 5), -1, 0)));
+
+   Ada.Text_IO.Put_Line
+      ("Right = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move
+            ((Row => 10, Col => 5), 0, 1)));
+
+   Ada.Text_IO.Put_Line
       ("Block P1 Row = " &
        Ada_Tetris.Board.Row_Index'Image (B.P1.Row));
 

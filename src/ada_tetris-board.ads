@@ -35,6 +35,10 @@ package Ada_Tetris.Board is
    function Can_Move
       (From : Position;
        To   : Position) return Boolean;
+   function Can_Move
+      (P         : Position;
+       Delta_Row : Integer;
+       Delta_Col : Integer) return Boolean;
 
    procedure Move
       (From_Row : Row_Index;
