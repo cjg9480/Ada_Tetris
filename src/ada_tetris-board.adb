@@ -76,6 +76,11 @@ package body Ada_Tetris.Board is
        Delta_Col : Integer) is
    begin
       if Can_Move (B, Delta_Row, Delta_Col) then
+         Board (B.P1.Row, B.P1.Col) := Empty;
+         Board (B.P2.Row, B.P2.Col) := Empty;
+         Board (B.P3.Row, B.P3.Col) := Empty;
+         Board (B.P4.Row, B.P4.Col) := Empty;
+
          B.P1.Row := Row_Index (Integer (B.P1.Row) + Delta_Row);
          B.P1.Col := Col_Index (Integer (B.P1.Col) + Delta_Col);
 
@@ -87,9 +92,10 @@ package body Ada_Tetris.Board is
 
          B.P4.Row := Row_Index (Integer (B.P4.Row) + Delta_Row);
          B.P4.Col := Col_Index (Integer (B.P4.Col) + Delta_Col);
+
+         Place (B);
       end if;
    end Move;
-
 
    procedure Clear is
    begin
