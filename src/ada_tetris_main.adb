@@ -136,6 +136,30 @@ begin
       ("Block P4 Col after collision = " &
        Ada_Tetris.Board.Col_Index'Image (B.P4.Col));
 
+   Ada.Text_IO.Put_Line
+      ("--- Wall Collision Tests ---");
+
+   Ada.Text_IO.Put_Line
+      ("Block at left wall cannot move left = " &
+      Boolean'Image
+      (Ada_Tetris.Board.Can_Move
+      (Ada_Tetris.Board.Block'(
+      P1 => (Row => 10, Col => 1),
+      P2 => (Row => 10, Col => 2),
+      P3 => (Row => 10, Col => 3),
+      P4 => (Row => 10, Col => 4)),
+      0, -1)));
+
+   Ada.Text_IO.Put_Line
+      ("Block at right wall cannot move right = " &
+      Boolean'Image
+      (Ada_Tetris.Board.Can_Move
+      (Ada_Tetris.Board.Block'(
+      P1 => (Row => 10, Col => 7),
+      P2 => (Row => 10, Col => 8),
+      P3 => (Row => 10, Col => 9),
+      P4 => (Row => 10, Col => 10)),
+      0, 1)));
 
    Ada_Tetris.Board.Draw;
 
