@@ -19,6 +19,12 @@ procedure Ada_Tetris_Main is
        P3 => (Row => 20, Col => 6),
        P4 => (Row => 20, Col => 7));
 
+   B_Horizontal : Ada_Tetris.Board.Block :=
+      (P1 => (Row => 10, Col => 4),
+       P2 => (Row => 10, Col => 5),
+       P3 => (Row => 10, Col => 6),
+       P4 => (Row => 10, Col => 7));
+
 begin
 
    Ada.Text_IO.Put_Line
@@ -160,6 +166,31 @@ begin
       P3 => (Row => 10, Col => 9),
       P4 => (Row => 10, Col => 10)),
       0, 1)));
+
+   Ada_Tetris.Board.Draw;
+
+   Ada.Text_IO.Put_Line ("--- Move Block Right ---");
+   Ada_Tetris.Board.Place (B_Horizontal);
+   Ada_Tetris.Board.Move (B_Horizontal, 0, 1);
+
+   Ada.Text_IO.Put_Line
+      ("Block P1 Col after right = " &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P1.Col));
+
+   Ada.Text_IO.Put_Line
+      ("Block P4 Col after right = " &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P4.Col));
+
+   Ada.Text_IO.Put_Line ("--- Move Block Left ---");
+   Ada_Tetris.Board.Move (B_Horizontal, 0, -1);
+
+   Ada.Text_IO.Put_Line
+      ("Block P1 Col after left = " &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P1.Col));
+
+   Ada.Text_IO.Put_Line
+      ("Block P4 Col after left = " &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P4.Col));
 
    Ada_Tetris.Board.Draw;
 
