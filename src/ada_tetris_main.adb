@@ -122,6 +122,21 @@ begin
       ("Block P4 Row = " &
        Ada_Tetris.Board.Row_Index'Image (B.P4.Row));
 
+   -- Place an obstacle to the right of the block
+   Ada_Tetris.Board.Place (20, 8);
+
+   Ada.Text_IO.Put_Line
+      ("Block Right into obstacle = " &
+       Boolean'Image
+         (Ada_Tetris.Board.Can_Move (B, 0, 1)));
+
+   Ada_Tetris.Board.Move (B, 0, 1);
+
+   Ada.Text_IO.Put_Line
+      ("Block P4 Col after collision = " &
+       Ada_Tetris.Board.Col_Index'Image (B.P4.Col));
+
+
    Ada_Tetris.Board.Draw;
 
 end Ada_Tetris_Main;

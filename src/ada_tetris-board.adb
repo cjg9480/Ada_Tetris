@@ -47,16 +47,66 @@ package body Ada_Tetris.Board is
          and New_Col in 1 .. Width;
    end Can_Move;
 
+   function Block_Contains
+      (B   : Block;
+       Row : Row_Index;
+       Col : Col_Index) return Boolean is
+   begin
+      return
+         (B.P1.Row = Row and B.P1.Col = Col)
+         or else
+         (B.P2.Row = Row and B.P2.Col = Col)
+         or else
+         (B.P3.Row = Row and B.P3.Col = Col)
+         or else
+         (B.P4.Row = Row and B.P4.Col = Col);
+   end Block_Contains;
+
+   function Can_Move_Point
+      (B         : Block;
+       P         : Position;
+       Delta_Row : Integer;
+       Delta_Col : Integer) return Boolean
+   is
+      New_Row : constant Integer :=
+         Integer (P.Row) + Delta_Row;
+      New_Col : constant Integer :=
+         Integer (P.Col) + Delta_Col;
+   begin
+      -- 1. 게임판 경계 검사
+      if New_Row not in 1 .. Height
+         or else New_Col not in 1 .. Width
+      then
+         return False;
+      end if;
+
+      -- 2. 목적지가 비어 있으면 이동 가능
+      if Board (Row_Index (New_Row),
+                Col_Index (New_Col)) = Empty
+      then
+         return True;
+      end if;
+
+      -- 3. 현재 블록 자신의 칸이면 이동 가능
+      return Block_Contains
+         (B, Row_Index (New_Row), Col_Index (New_Col));
+   end Can_Move_Point;
+
    function Can_Move
       (B         : Block;
        Delta_Row : Integer;
        Delta_Col : Integer) return Boolean is
    begin
-      return Can_Move (B.P1, Delta_Row, Delta_Col)
-         and Can_Move (B.P2, Delta_Row, Delta_Col)
-         and Can_Move (B.P3, Delta_Row, Delta_Col)
-         and Can_Move (B.P4, Delta_Row, Delta_Col);
+      return
+         Can_Move_Point (B, B.P1, Delta_Row, Delta_Col)
+         and then
+         Can_Move_Point (B, B.P2, Delta_Row, Delta_Col)
+         and then
+         Can_Move_Point (B, B.P3, Delta_Row, Delta_Col)
+         and then
+         Can_Move_Point (B, B.P4, Delta_Row, Delta_Col);
    end Can_Move;
+
 
    procedure Move
       (From_Row : Row_Index;
