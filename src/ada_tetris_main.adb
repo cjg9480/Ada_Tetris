@@ -25,6 +25,12 @@ procedure Ada_Tetris_Main is
        P3 => (Row => 10, Col => 6),
        P4 => (Row => 10, Col => 7));
 
+   B_Collision : Ada_Tetris.Board.Block :=
+      (P1 => (Row => 5, Col => 4),
+       P2 => (Row => 5, Col => 5),
+       P3 => (Row => 5, Col => 6),
+       P4 => (Row => 5, Col => 7));
+
 begin
 
    Ada.Text_IO.Put_Line
@@ -191,6 +197,52 @@ begin
    Ada.Text_IO.Put_Line
       ("Block P4 Col after left = " &
        Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P4.Col));
+
+   Ada.Text_IO.Put_Line ("--- Rotate Block ---");
+
+   Ada_Tetris.Board.Rotate (B_Horizontal);
+
+   Ada.Text_IO.Put_Line
+      ("P1 = (" &
+       Ada_Tetris.Board.Row_Index'Image (B_Horizontal.P1.Row) & "," &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P1.Col) & ")");
+
+   Ada.Text_IO.Put_Line
+      ("P2 = (" &
+       Ada_Tetris.Board.Row_Index'Image (B_Horizontal.P2.Row) & "," &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P2.Col) & ")");
+
+   Ada.Text_IO.Put_Line
+      ("P3 = (" &
+       Ada_Tetris.Board.Row_Index'Image (B_Horizontal.P3.Row) & "," &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P3.Col) & ")");
+
+   Ada.Text_IO.Put_Line
+      ("P4 = (" &
+       Ada_Tetris.Board.Row_Index'Image (B_Horizontal.P4.Row) & "," &
+       Ada_Tetris.Board.Col_Index'Image (B_Horizontal.P4.Col) & ")");
+
+   Ada_Tetris.Board.Draw;
+
+   Ada.Text_IO.Put_Line ("--- Rotate Block Collision Test ---");
+
+   Ada_Tetris.Board.Clear;
+   Ada_Tetris.Board.Place (B_Collision);
+   Ada_Tetris.Board.Place (6, 5);
+
+   Ada_Tetris.Board.Rotate (B_Collision);
+
+   Ada.Text_IO.Put_Line
+      ("P1 Row after collision = " &
+       Ada_Tetris.Board.Row_Index'Image (B_Collision.P1.Row));
+
+   Ada.Text_IO.Put_Line
+      ("P3 Row after collision = " &
+       Ada_Tetris.Board.Row_Index'Image (B_Collision.P3.Row));
+
+   Ada.Text_IO.Put_Line
+      ("P3 Col after collision = " &
+       Ada_Tetris.Board.Col_Index'Image (B_Collision.P3.Col));
 
    Ada_Tetris.Board.Draw;
 

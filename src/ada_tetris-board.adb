@@ -147,6 +147,80 @@ package body Ada_Tetris.Board is
       end if;
    end Move;
 
+   procedure Rotate (B : in out Block) is
+      New_B : Block;
+
+      P1_Row : constant Integer :=
+         Integer (B.P2.Row) +
+         Integer (B.P1.Col) - Integer (B.P2.Col);
+      P1_Col : constant Integer :=
+         Integer (B.P2.Col) -
+         (Integer (B.P1.Row) - Integer (B.P2.Row));
+
+      P3_Row : constant Integer :=
+         Integer (B.P2.Row) +
+         Integer (B.P3.Col) - Integer (B.P2.Col);
+      P3_Col : constant Integer :=
+         Integer (B.P2.Col) -
+         (Integer (B.P3.Row) - Integer (B.P2.Row));
+
+      P4_Row : constant Integer :=
+         Integer (B.P2.Row) +
+         Integer (B.P4.Col) - Integer (B.P2.Col);
+      P4_Col : constant Integer :=
+         Integer (B.P2.Col) -
+         (Integer (B.P4.Row) - Integer (B.P2.Row));
+
+      function Is_Available
+         (Row : Integer;
+          Col : Integer) return Boolean
+      is
+      begin
+         if Row not in 1 .. Height
+            or else Col not in 1 .. Width
+         then
+            return False;
+         end if;
+
+         return
+            Board (Row_Index (Row), Col_Index (Col)) = Empty
+            or else Block_Contains
+               (B, Row_Index (Row), Col_Index (Col));
+      end Is_Available;
+
+   begin
+      if not Is_Available (P1_Row, P1_Col)
+         or else not Is_Available (Integer (B.P2.Row),
+                                   Integer (B.P2.Col))
+         or else not Is_Available (P3_Row, P3_Col)
+         or else not Is_Available (P4_Row, P4_Col)
+      then
+         return;
+      end if;
+
+      New_B.P1 :=
+         (Row => Row_Index (P1_Row),
+          Col => Col_Index (P1_Col));
+
+      New_B.P2 := B.P2;
+
+      New_B.P3 :=
+         (Row => Row_Index (P3_Row),
+          Col => Col_Index (P3_Col));
+
+      New_B.P4 :=
+         (Row => Row_Index (P4_Row),
+          Col => Col_Index (P4_Col));
+
+      Board (B.P1.Row, B.P1.Col) := Empty;
+      Board (B.P2.Row, B.P2.Col) := Empty;
+      Board (B.P3.Row, B.P3.Col) := Empty;
+      Board (B.P4.Row, B.P4.Col) := Empty;
+
+      B := New_B;
+      Place (B);
+   end Rotate;
+
    procedure Clear is
    begin
       Board := (others => (others => Empty));

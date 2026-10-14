@@ -56,6 +56,8 @@ package Ada_Tetris.Board is
        Delta_Row : Integer;
        Delta_Col : Integer);
 
+   procedure Rotate (B : in out Block);
+
    procedure Clear;
    procedure Draw;
 
