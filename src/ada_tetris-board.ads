@@ -13,11 +13,14 @@ package Ada_Tetris.Board is
       Col : Col_Index;
    end record;
 
+   type Block_Shape is (I_Shape, O_Shape, T_Shape, L_Shape, S_Shape);
+
    type Block is record
-      P1 : Position;
-      P2 : Position;
-      P3 : Position;
-      P4 : Position;
+      Shape : Block_Shape;
+      P1    : Position;
+      P2    : Position;
+      P3    : Position;
+      P4    : Position;
    end record;
 
    type Board_State is

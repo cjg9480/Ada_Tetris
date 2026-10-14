@@ -8,28 +8,32 @@ procedure Ada_Tetris_Main is
       (Row => 19, Col => 5);
 
    B : Ada_Tetris.Board.Block :=
-      (P1 => (Row => 19, Col => 4),
-       P2 => (Row => 19, Col => 5),
-       P3 => (Row => 19, Col => 6),
-       P4 => (Row => 19, Col => 7));
+      (Shape => Ada_Tetris.Board.I_Shape,
+       P1    => (Row => 19, Col => 4),
+       P2    => (Row => 19, Col => 5),
+       P3    => (Row => 19, Col => 6),
+       P4    => (Row => 19, Col => 7));
 
    B_Bottom : Ada_Tetris.Board.Block :=
-      (P1 => (Row => 20, Col => 4),
-       P2 => (Row => 20, Col => 5),
-       P3 => (Row => 20, Col => 6),
-       P4 => (Row => 20, Col => 7));
+      (Shape => Ada_Tetris.Board.I_Shape,
+       P1    => (Row => 20, Col => 4),
+       P2    => (Row => 20, Col => 5),
+       P3    => (Row => 20, Col => 6),
+       P4    => (Row => 20, Col => 7));
 
    B_Horizontal : Ada_Tetris.Board.Block :=
-      (P1 => (Row => 10, Col => 4),
-       P2 => (Row => 10, Col => 5),
-       P3 => (Row => 10, Col => 6),
-       P4 => (Row => 10, Col => 7));
+      (Shape => Ada_Tetris.Board.I_Shape,
+       P1    => (Row => 10, Col => 4),
+       P2    => (Row => 10, Col => 5),
+       P3    => (Row => 10, Col => 6),
+       P4    => (Row => 10, Col => 7));
 
    B_Collision : Ada_Tetris.Board.Block :=
-      (P1 => (Row => 5, Col => 4),
-       P2 => (Row => 5, Col => 5),
-       P3 => (Row => 5, Col => 6),
-       P4 => (Row => 5, Col => 7));
+      (Shape => Ada_Tetris.Board.I_Shape,
+       P1    => (Row => 5, Col => 4),
+       P2    => (Row => 5, Col => 5),
+       P3    => (Row => 5, Col => 6),
+       P4    => (Row => 5, Col => 7));
 
 begin
 
@@ -156,6 +160,7 @@ begin
       Boolean'Image
       (Ada_Tetris.Board.Can_Move
       (Ada_Tetris.Board.Block'(
+         Shape => Ada_Tetris.Board.I_Shape,
       P1 => (Row => 10, Col => 1),
       P2 => (Row => 10, Col => 2),
       P3 => (Row => 10, Col => 3),
@@ -167,6 +172,7 @@ begin
       Boolean'Image
       (Ada_Tetris.Board.Can_Move
       (Ada_Tetris.Board.Block'(
+         Shape => Ada_Tetris.Board.I_Shape,
       P1 => (Row => 10, Col => 7),
       P2 => (Row => 10, Col => 8),
       P3 => (Row => 10, Col => 9),
