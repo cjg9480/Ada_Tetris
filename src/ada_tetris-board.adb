@@ -198,6 +198,8 @@ package body Ada_Tetris.Board is
          return;
       end if;
 
+      New_B.Shape := B.Shape;
+
       New_B.P1 :=
          (Row => Row_Index (P1_Row),
           Col => Col_Index (P1_Col));
